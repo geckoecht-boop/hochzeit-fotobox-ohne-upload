@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hochzeitsgalerie - Laura & Yannick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Poppins', Arial, sans-serif; 
+            text-align: center; 
+            background-color: #fdfbf7;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-opacity='0.25'%3E%3Cpath d='M32,45 C28,42 24,45 23,48 C25,51 30,52 33,49 Z' fill='%234caf50' fill-opacity='0.22'/%3E%3Cpath d='M48,35 C52,32 56,35 57,38 C55,41 50,42 47,39 Z' fill='%234caf50' fill-opacity='0.22'/%3E%3Cg fill='%23d32f2f'%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Ccircle cx='37' cy='38' r='7' fill='%23b71c1c'/%3E%3Cpath d='M40,33 C44,33 46,36 44,39 C41,41 39,37 40,33 Z' fill='%23e53935'/%3E%3Cpath d='M35,42 C33,39 36,36 39,37 C41,40 38,43 35,42 Z' fill='%23e53935'/%3E%3Cpath d='M43,43 C46,41 44,37 41,38 C39,40 41,44 43,43 Z' fill='%23e53935'/%3E%3Ccircle cx='40' cy='40' r='2.5' fill='%237f0000'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            padding: 15px; 
+            color: #4a4a4a;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container { max-width: 1200px; margin: 0 auto; background: rgba(255, 255, 255, 0.96); padding: 25px 15px; border-radius: 20px; box-shadow: 0 10px 30px rgba(232, 197, 197, 0.2); border: 1px solid #f5eded; box-sizing: border-box; }
+        h1 { font-family: 'Playfair Display', Georgia, serif; color: #d4af37; border-bottom: 2px solid #fdfbf7; padding-bottom: 10px; margin-bottom: 5px; font-size: 30px; }
+        .hearts { font-size: 18px; margin-bottom: 25px; font-weight: 600; color: #d4af37; }
+        .back-link { display: inline-block; background: #a3b899; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(163, 184, 153, 0.3); margin-bottom: 20px; }
+        .filter-container { display: flex; flex-direction: column; gap: 12px; max-width: 700px; margin: 20px auto; background: #fffcfc; padding: 15px; border-radius: 14px; border: 1px solid #f5eded; text-align: left; }
+        .filter-group label { font-weight: 600; font-size: 12px; display: block; margin-bottom: 6px; color: #666; }
+        select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e5dadb; font-size: 15px; background: white; color: #4a4a4a; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 15px; margin-top: 25px; }
+        @media (min-width: 480px) { .gallery { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; } }
+        .media-card { background: #fff; border: 1px solid #f5eded; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.01); display: flex; flex-direction: column; }
+        .media-card img { width: 100%; height: 140px; object-fit: cover; cursor: pointer; }
+        @media (min-width: 480px) { .media-card img { height: 190px; } }
+        .info-area { padding: 12px; background: #fffcfc; border-top: 1px solid #f5eded; font-size: 12px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .task-badge { font-size: 10px; color: #cd9393; font-weight: 600; margin-bottom: 6px; border-left: 2px solid #e8c5c5; padding-left: 6px; line-height: 1.3; }
+        .caption-text { font-weight: 600; color: #555; word-break: break-word; font-size: 13px; }
+        
+        .lightbox-modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(20, 15, 15, 0.95); }
+        .lightbox-container { display: flex; width: 100%; height: 100%; position: absolute; top: 0; left: 0; flex-direction: column; }
+        .lightbox-main { width: 100%; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; }
+        .lightbox-content { max-width: 90%; max-height: 85%; object-fit: contain; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 24px; width: 44px; height: 44px; border-radius: 22px; cursor: pointer; }
+        .prev-btn { left: 15px; } .next-btn { right: 15px; }
+        .close-x { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; font-size: 20px; width: 38px; height: 38px; border-radius: 19px; cursor: pointer; z-index: 10; }
+        .lightbox-info { position: absolute; bottom: 20px; color: white; background: rgba(0,0,0,0.6); padding: 8px 16px; border-radius: 20px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-link">⬅ Zurück zur Startseite</a>
+    <h1>✨ Hochzeitsgalerie ✨</h1>
+    <div class="hearts">♥ 17.07.2026 ♥</div>
+
+    <div class="filter-container">
+        <div class="filter-group">
+            <label for="galleryFilter">🔍 Nach Aufgabe filtern:</label>
+            <select id="galleryFilter" onchange="filterGallery()">
+                <option value="all">-- Alle Bilder anzeigen --</option>
+                <option value="0">Ohne zugeordnete Aufgabe</option>
+                <option value="1">Aufgabe 1: Kuss-Foto / Selfie</option>
+                <option value="2">Aufgabe 2: Am längsten zusammen</option>
+                <option value="3">Aufgabe 3: Nächstes Ehepaar</option>
+                <option value="4">Aufgabe 4: Bunteste Krawatte / Fliege</option>
+                <option value="5">Aufgabe 5: Verliebte Blicke Brautpaar</option>
+                <option value="6">Aufgabe 6: Ähnlich alt wie du</option>
+                <option value="7">Aufgabe 7: Ältester & jüngster Gast</option>
+                <option value="8">Aufgabe 8: Augustaner Hochschule</option>
+                <option value="9">Aufgabe 9: Gleiches Sternzeichen</option>
+                <option value="10">Aufgabe 10: Größte & kleinste Schuhe</option>
+                <option value="11">Aufgabe 11: Zwischen größtem & kleinstem Gast</option>
+                <option value="12">Aufgabe 12: Gleicher Anfangsbuchstabe Vorname</option>
+                <option value="13">Aufgabe 13: Schickstes Outfit</option>
+                <option value="14">Aufgabe 14: Weiteste Anreise</option>
+                <option value="15">Aufgabe 15: Foto von dir und deiner Frau</option>
+                <option value="16">Aufgabe 16: Foto von dir und deinen Enkelkindern</option>
+                <option value="17">Aufgabe 17: Eheringe des Brautpaares</option>
+                <option value="18">Aufgabe 18: Braut im Gespräch</option>
+                <option value="19">Aufgabe 19: Bräutigam im Gespräch</option>
+                <option value="20">Aufgabe 20: Essen in den Mund schieben</option>
+                <option value="21">Aufgabe 21: Schöne Hochzeitsdeko</option>
+                <option value="22">Aufgabe 22: Gäste ohne Partner</option>
+                <option value="23">Aufgabe 23: Alle Hände mit Eheringen</option>
+                <option value="24">Aufgabe 24: Kein Alkohol trinken</option>
+                <option value="25">Aufgabe 25: Grimasse ziehen</option>
+                <option value="26">Aufgabe 26: Mehr als 10 Länder bereist</option>
+                <option value="27">Aufgabe 27: Muttis des Brautpaares</option>
+                <option value="28">Aufgabe 28: Alle Großeltern des Brautpaares</option>
+                <option value="29">Aufgabe 29: Papas des Brautpaares</option>
+                <option value="30">Aufgabe 30: Geschwister & Stiefgeschwister</option>
+                <option value="31">Aufgabe 31: Bräutigam ganzes Leben kennen</option>
+                <option value="32">Aufgabe 32: Braut ganzes Leben kennen</option>
+                <option value="33">Aufgabe 33: Am längsten studiert</option>
+                <option value="34">Aufgabe 34: Mit Kindern und Enkelkindern</option>
+                <option value="35">Aufgabe 35: Auto kaputt gefahren</option>
+                <option value="36">Aufgabe 36: Am Tisch sitzen</option>
+                <option value="37">Aufgabe 37: Gruppenumarmung</option>
+                <option value="38">Aufgabe 38: Drei Leute, die sich nicht kannten</option>
+                <option value="39">Aufgabe 39: Torte & Bäckerin</option>
+                <option value="40">Aufgabe 40: Brautpaar & Trauzeugen Herz</option>
+                <option value="41">Aufgabe 41: Nachname Hentschel</option>
+                <option value="42">Aufgabe 42: Der Brautstrauß</option>
+                <option value="43">Aufgabe 43: Peinliches Bild Sven Jäger</option>
+                <option value="44">Aufgabe 44: Vorher-Nachher-Bild</option>
+                <option value="45">Aufgabe 45: Fotograf Lars knipst</option>
+                <option value="46">Aufgabe 46: Ein Tier sehen</option>
+                <option value="47">Aufgabe 47: Spitzname „Schaufel“</option>
+                <option value="48">Aufgabe 48: Gastronomie- / Hotelbetrieb</option>
+                <option value="49">Aufgabe 49: Foto mit dem Brautpaar</option>
+            </select>
+        </div>
+    </div>
+    <div class="gallery" id="guestGallery"></div>
+</div>
+
+<div id="lightbox" class="lightbox-modal">
+    <button class="close-x" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-container">
+        <div class="lightbox-main">
+            <button class="nav-btn prev-btn" onclick="navigateLightbox(-1)">❮</button>
+            <img id="lightboxImg" class="lightbox-content" src="">
+            <button class="nav-btn next-btn" onclick="navigateLightbox(1)">❯</button>
+            <div id="lightboxInfo" class="lightbox-info"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Trage hier deine Fotos ein, die im Ordner "bilder/" liegen:
+    const allImagesData = [
+        { file: "foto1.jpg", caption: "Laura & Yannick", task: "49" },
+        { file: "foto2.jpg", caption: "Familie", task: "30" },
+        { file: "foto3.jpg", caption: "", task: "21" }
+    ];
+
+    const taskShortTitles = {
+        "1": "Aufgabe 1: Kuss-Foto / Selfie",
+        "2": "Aufgabe 2: Am längsten zusammen",
+        "3": "Aufgabe 3: Nächstes Ehepaar",
+        "4": "Aufgabe 4: Bunteste Krawatte / Fliege",
+        "5": "Aufgabe 5: Verliebte Blicke Brautpaar",
+        "6": "Aufgabe 6: Ähnlich alt wie du",
+        "7": "Aufgabe 7: Ältester & jüngster Gast",
+        "8": "Aufgabe 8: Augustaner Hochschule",
+        "9": "Aufgabe 9: Gleiches Sternzeichen",
+        "10": "Aufgabe 10: Größte & kleinste Schuhe",
+        "11": "Aufgabe 11: Zwischen größtem & kleinstem Gast",
+        "12": "Aufgabe 12: Gleicher Anfangsbuchstabe Vorname",
+        "13": "Aufgabe 13: Schickstes Outfit",
+        "14": "Aufgabe 14: Weiteste Anreise",
+        "15": "Aufgabe 15: Foto von dir und deiner Frau",
+        "16": "Aufgabe 16: Foto von dir und deinen Enkelkindern",
+        "17": "Aufgabe 17: Eheringe des Brautpaares",
+        "18": "Aufgabe 18: Braut im Gespräch",
+        "19": "Aufgabe 19: Bräutigam im Gespräch",
+        "20": "Aufgabe 20: Essen in den Mund schieben",
+        "21": "Aufgabe 21: Schöne Hochzeitsdeko",
+        "22": "Aufgabe 22: Gäste ohne Partner",
+        "23": "Aufgabe 23: Alle Hände mit Eheringen",
+        "24": "Aufgabe 24: Kein Alkohol trinken",
+        "25": "Aufgabe 25: Grimasse ziehen",
+        "26": "Aufgabe 26: Mehr als 10 Länder bereist",
+        "27": "Aufgabe 27: Muttis des Brautpaares",
+        "28": "Aufgabe 28: Alle Großeltern des Brautpaares",
+        "29": "Aufgabe 29: Papas des Brautpaares",
+        "30": "Aufgabe 30: Geschwister & Stiefgeschwister",
+        "31": "Aufgabe 31: Bräutigam ganzes Leben kennen",
+        "32": "Aufgabe 32: Braut ganzes Leben kennen",
+        "33": "Aufgabe 33: Am längsten studiert",
+        "34": "Aufgabe 34: Mit Kindern und Enkelkindern",
+        "35": "Aufgabe 35: Auto kaputt gefahren",
+        "36": "Aufgabe 36: Am Tisch sitzen",
+        "37": "Aufgabe 37: Gruppenumarmung",
+        "38": "Aufgabe 38: Drei Leute, die sich nicht kannten",
+        "39": "Aufgabe 39: Torte & Bäckerin",
+        "40": "Aufgabe 40: Brautpaar & Trauzeugen Herz",
+        "41": "Aufgabe 41: Nachname Hentschel",
+        "42": "Aufgabe 42: Der Brautstrauß",
+        "43": "Aufgabe 43: Peinliches Bild Sven Jäger",
+        "44": "Aufgabe 44: Vorher-Nachher-Bild",
+        "45": "Aufgabe 45: Fotograf Lars knipst",
+        "46": "Aufgabe 46: Ein Tier sehen",
+        "47": "Aufgabe 47: Spitzname „Schaufel“",
+        "48": "Aufgabe 48: Gastronomie- / Hotelbetrieb",
+        "49": "Aufgabe 49: Foto mit dem Brautpaar"
+    };
+
+    let gefilterteBilder = [];
+    let currentLightboxIndex = -1;
+
+    window.onload = filterGallery;
+
+    function filterGallery() {
+        const filterValue = document.getElementById('galleryFilter').value;
+        const gallery = document.getElementById('guestGallery');
+        gallery.innerHTML = "";
+
+        gefilterteBilder = allImagesData.filter(item => filterValue === "all" ? true : item.task === filterValue);
+
+        if (gefilterteBilder.length === 0) {
+            gallery.innerHTML = "<p style='color:#999; grid-column: 1/-1; padding: 20px;'>Keine Fotos in dieser Kategorie vorhanden.</p>";
+            return;
+        }
+
+        gefilterteBilder.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'media-card';
+            
+            const img = document.createElement('img');
+            img.src = `bilder/${item.file}`;
+            img.onclick = () => openLightbox(index);
+            card.appendChild(img);
+
+            const infoArea = document.createElement('div');
+            infoArea.className = 'info-area';
+            
+            if (item.task && item.task !== "0") {
+                const badge = document.createElement('div');
+                badge.className = 'task-badge';
+                badge.innerText = taskShortTitles[item.task] || `Aufgabe ${item.task}`;
+                infoArea.appendChild(badge);
+            }
+            
+            const cap = document.createElement('div');
+            cap.className = 'caption-text';
+            cap.innerText = item.caption ? `👤 ${item.caption}` : "💝 Hochzeitstag";
+            infoArea.appendChild(cap);
+
+            card.appendChild(infoArea);
+            gallery.appendChild(card);
+        });
+    }
+
+    function openLightbox(index) {
+        document.getElementById('lightbox').style.display = 'block';
+        currentLightboxIndex = index;
+        updateLightboxContent();
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        currentLightboxIndex = -1;
+    }
+
+    function navigateLightbox(direction) {
+        currentLightboxIndex += direction;
+        if (currentLightboxIndex >= gefilterteBilder.length) currentLightboxIndex = 0;
+        if (currentLightboxIndex < 0) currentLightboxIndex = gefilterteBilder.length - 1;
+        updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+        const item = gefilterteBilder[currentLightboxIndex];
+        document.getElementById('lightboxImg').src = `bilder/${item.file}`;
+        const taskText = (item.task && item.task !== "0") ? ` • ${taskShortTitles[item.task]}` : "";
+        document.getElementById('lightboxInfo').innerText = `${item.caption || "Foto"}${taskText}`;
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('lightbox').style.display === 'block') {
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+            if (e.key === 'Escape') closeLightbox();
+        }
+    });
+</script>
+</body>
+</html>
