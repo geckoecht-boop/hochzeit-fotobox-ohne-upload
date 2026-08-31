@@ -57,53 +57,17 @@
                 <option value="0">Ohne zugeordnete Aufgabe</option>
                 <option value="1">Aufgabe 1: Kuss-Foto / Selfie</option>
                 <option value="2">Aufgabe 2: Am längsten zusammen</option>
-                <option value="3">Aufgabe 3: Nächstes Ehepaar</option>
-                <option value="4">Aufgabe 4: Bunteste Krawatte / Fliege</option>
-                <option value="5">Aufgabe 5: Verliebte Blicke Brautpaar</option>
-                <option value="6">Aufgabe 6: Ähnlich alt wie du</option>
-                <option value="7">Aufgabe 7: Ältester & jüngster Gast</option>
-                <option value="8">Aufgabe 8: Augustaner Hochschule</option>
-                <option value="9">Aufgabe 9: Gleiches Sternzeichen</option>
-                <option value="10">Aufgabe 10: Größte & kleinste Schuhe</option>
-                <option value="11">Aufgabe 11: Zwischen größtem & kleinstem Gast</option>
-                <option value="12">Aufgabe 12: Gleicher Anfangsbuchstabe Vorname</option>
-                <option value="13">Aufgabe 13: Schickstes Outfit</option>
                 <option value="14">Aufgabe 14: Weiteste Anreise</option>
-                <option value="15">Aufgabe 15: Foto von dir und deiner Frau</option>
-                <option value="16">Aufgabe 16: Foto von dir und deinen Enkelkindern</option>
-                <option value="17">Aufgabe 17: Eheringe des Brautpaares</option>
-                <option value="18">Aufgabe 18: Braut im Gespräch</option>
-                <option value="19">Aufgabe 19: Bräutigam im Gespräch</option>
-                <option value="20">Aufgabe 20: Essen in den Mund schieben</option>
-                <option value="21">Aufgabe 21: Schöne Hochzeitsdeko</option>
-                <option value="22">Aufgabe 22: Gäste ohne Partner</option>
-                <option value="23">Aufgabe 23: Alle Hände mit Eheringen</option>
-                <option value="24">Aufgabe 24: Kein Alkohol trinken</option>
-                <option value="25">Aufgabe 25: Grimasse ziehen</option>
-                <option value="26">Aufgabe 26: Mehr als 10 Länder bereist</option>
                 <option value="27">Aufgabe 27: Muttis des Brautpaares</option>
                 <option value="28">Aufgabe 28: Alle Großeltern des Brautpaares</option>
-                <option value="29">Aufgabe 29: Papas des Brautpaares</option>
-                <option value="30">Aufgabe 30: Geschwister & Stiefgeschwister</option>
-                <option value="31">Aufgabe 31: Bräutigam ganzes Leben kennen</option>
-                <option value="32">Aufgabe 32: Braut ganzes Leben kennen</option>
-                <option value="33">Aufgabe 33: Am längsten studiert</option>
-                <option value="34">Aufgabe 34: Mit Kindern und Enkelkindern</option>
                 <option value="35">Aufgabe 35: Auto kaputt gefahren</option>
                 <option value="36">Aufgabe 36: Am Tisch sitzen</option>
-                <option value="37">Aufgabe 37: Gruppenumarmung</option>
-                <option value="38">Aufgabe 38: Drei Leute, die sich nicht kannten</option>
                 <option value="39">Aufgabe 39: Torte & Bäckerin</option>
-                <option value="40">Aufgabe 40: Brautpaar & Trauzeugen Herz</option>
-                <option value="41">Aufgabe 41: Nachname Hentschel</option>
-                <option value="42">Aufgabe 42: Der Brautstrauß</option>
                 <option value="43">Aufgabe 43: Peinliches Bild Sven Jäger</option>
-                <option value="44">Aufgabe 44: Vorher-Nachher-Bild</option>
                 <option value="45">Aufgabe 45: Fotograf Lars knipst</option>
                 <option value="46">Aufgabe 46: Ein Tier sehen</option>
                 <option value="47">Aufgabe 47: Spitzname „Schaufel“</option>
                 <option value="48">Aufgabe 48: Gastronomie- / Hotelbetrieb</option>
-                <option value="49">Aufgabe 49: Foto mit dem Brautpaar</option>
             </select>
         </div>
     </div>
@@ -123,8 +87,7 @@
 </div>
 
 <script>
-    // Trage hier deine Fotos ein, die im Ordner "bilder/" liegen:
-const allImagesData = [
+    const allImagesData = [
         { file: "1784277438158-503090875___45___Veronika___.jpg", caption: "Veronika", task: "45" },
         { file: "1784277438195-29728778___45___Veronika___.jpg", caption: "Veronika", task: "45" },
         { file: "1784278100945-744530345___35___Sven_Jger___.jpg", caption: "Sven Jäger", task: "35" },
@@ -205,53 +168,17 @@ const allImagesData = [
     const taskShortTitles = {
         "1": "Aufgabe 1: Kuss-Foto / Selfie",
         "2": "Aufgabe 2: Am längsten zusammen",
-        "3": "Aufgabe 3: Nächstes Ehepaar",
-        "4": "Aufgabe 4: Bunteste Krawatte / Fliege",
-        "5": "Aufgabe 5: Verliebte Blicke Brautpaar",
-        "6": "Aufgabe 6: Ähnlich alt wie du",
-        "7": "Aufgabe 7: Ältester & jüngster Gast",
-        "8": "Aufgabe 8: Augustaner Hochschule",
-        "9": "Aufgabe 9: Gleiches Sternzeichen",
-        "10": "Aufgabe 10: Größte & kleinste Schuhe",
-        "11": "Aufgabe 11: Zwischen größtem & kleinstem Gast",
-        "12": "Aufgabe 12: Gleicher Anfangsbuchstabe Vorname",
-        "13": "Aufgabe 13: Schickstes Outfit",
         "14": "Aufgabe 14: Weiteste Anreise",
-        "15": "Aufgabe 15: Foto von dir und deiner Frau",
-        "16": "Aufgabe 16: Foto von dir und deinen Enkelkindern",
-        "17": "Aufgabe 17: Eheringe des Brautpaares",
-        "18": "Aufgabe 18: Braut im Gespräch",
-        "19": "Aufgabe 19: Bräutigam im Gespräch",
-        "20": "Aufgabe 20: Essen in den Mund schieben",
-        "21": "Aufgabe 21: Schöne Hochzeitsdeko",
-        "22": "Aufgabe 22: Gäste ohne Partner",
-        "23": "Aufgabe 23: Alle Hände mit Eheringen",
-        "24": "Aufgabe 24: Kein Alkohol trinken",
-        "25": "Aufgabe 25: Grimasse ziehen",
-        "26": "Aufgabe 26: Mehr als 10 Länder bereist",
         "27": "Aufgabe 27: Muttis des Brautpaares",
         "28": "Aufgabe 28: Alle Großeltern des Brautpaares",
-        "29": "Aufgabe 29: Papas des Brautpaares",
-        "30": "Aufgabe 30: Geschwister & Stiefgeschwister",
-        "31": "Aufgabe 31: Bräutigam ganzes Leben kennen",
-        "32": "Aufgabe 32: Braut ganzes Leben kennen",
-        "33": "Aufgabe 33: Am längsten studiert",
-        "34": "Aufgabe 34: Mit Kindern und Enkelkindern",
         "35": "Aufgabe 35: Auto kaputt gefahren",
         "36": "Aufgabe 36: Am Tisch sitzen",
-        "37": "Aufgabe 37: Gruppenumarmung",
-        "38": "Aufgabe 38: Drei Leute, die sich nicht kannten",
         "39": "Aufgabe 39: Torte & Bäckerin",
-        "40": "Aufgabe 40: Brautpaar & Trauzeugen Herz",
-        "41": "Aufgabe 41: Nachname Hentschel",
-        "42": "Aufgabe 42: Der Brautstrauß",
         "43": "Aufgabe 43: Peinliches Bild Sven Jäger",
-        "44": "Aufgabe 44: Vorher-Nachher-Bild",
         "45": "Aufgabe 45: Fotograf Lars knipst",
         "46": "Aufgabe 46: Ein Tier sehen",
         "47": "Aufgabe 47: Spitzname „Schaufel“",
-        "48": "Aufgabe 48: Gastronomie- / Hotelbetrieb",
-        "49": "Aufgabe 49: Foto mit dem Brautpaar"
+        "48": "Aufgabe 48: Gastronomie- / Hotelbetrieb"
     };
 
     let gefilterteBilder = [];
