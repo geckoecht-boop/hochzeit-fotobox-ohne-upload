@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Danke! - Laura & Yannick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Poppins', Arial, sans-serif; 
+            text-align: center; 
+            background-color: #fdfbf7;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-opacity='0.25'%3E%3Cpath d='M32,45 C28,42 24,45 23,48 C25,51 30,52 33,49 Z' fill='%234caf50' fill-opacity='0.22'/%3E%3Cpath d='M48,35 C52,32 56,35 57,38 C55,41 50,42 47,39 Z' fill='%234caf50' fill-opacity='0.22'/%3E%3Cg fill='%23d32f2f'%3E%3Ccircle cx='40' cy='40' r='9'/%3E%3Ccircle cx='37' cy='38' r='7' fill='%23b71c1c'/%3E%3Cpath d='M40,33 C44,33 46,36 44,39 C41,41 39,37 40,33 Z' fill='%23e53935'/%3E%3Cpath d='M35,42 C33,39 36,36 39,37 C41,40 38,43 35,42 Z' fill='%23e53935'/%3E%3Cpath d='M43,43 C46,41 44,37 41,38 C39,40 41,44 43,43 Z' fill='%23e53935'/%3E%3Ccircle cx='40' cy='40' r='2.5' fill='%237f0000'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            padding: 15px; 
+            color: #4a4a4a;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        .container { 
+            width: 100%;
+            max-width: 480px; 
+            margin: 15px auto; 
+            background: rgba(255, 255, 255, 0.96); 
+            padding: 30px 20px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(232, 197, 197, 0.25); 
+            border: 1px solid #f5eded; 
+            box-sizing: border-box;
+        }
+        
+        h1 { 
+            font-family: 'Playfair Display', Georgia, serif; 
+            color: #d4af37; 
+            margin: 0 0 5px 0; 
+            font-size: 32px; 
+            font-weight: 600; 
+            animation: hochzeitsschimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes hochzeitsschimmer {
+            0% { opacity: 0.85; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
+            100% { opacity: 0.85; transform: scale(1); }
+        }
+
+        .hearts { 
+            font-size: 18px; 
+            margin-bottom: 20px; 
+            font-weight: 600;
+            color: #d4af37;
+        }
+
+        .couple-img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 2px solid #f5eded;
+        }
+
+        .thank-you-text {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-gallery {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            box-sizing: border-box;
+            background: #d4af37;
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gallery:hover {
+            background: #c59f27;
+            transform: translateY(-2px);
+        }
+
+        .star-sparkle { display: inline-block; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Vielen Dank! ❤️</h1>
+    <div class="hearts">♥ Laura & Yannick ♥</div>
+    
+    <img src="brautpaar.jpg" alt="Laura & Yannick" class="couple-img">
+    
+    <div class="thank-you-text">
+        Danke, dass ihr diesen unvergesslichen Tag gemeinsam mit uns gefeiert habt! 
+        Eure Anwesenheit, die lieben Worte und die tollen Momente haben unsere Hochzeit perfekt gemacht.
+    </div>
+
+    <div class="action-buttons">
+        <a href="galerie.html" class="btn-gallery">
+            <span class="star-sparkle">✨</span> Zur Hochzeitsgalerie <span class="star-sparkle">✨</span>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
